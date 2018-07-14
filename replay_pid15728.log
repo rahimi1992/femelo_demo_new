@@ -1,0 +1,40 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 194 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 13012947 0 0
+ciMethod java/lang/Object hashCode ()I 2049 1 256 0 -1
+ciMethod java/lang/Object equals (Ljava/lang/Object;)Z 3073 1 100063 0 64
+ciMethod java/lang/Object clone ()Ljava/lang/Object; 2049 1 256 0 -1
+ciMethod java/lang/Class getSuperclass ()Ljava/lang/Class; 2049 1 256 0 -1
+ciMethod java/lang/Class getInterfaces ()[Ljava/lang/Class; 1 1 7481 0 1568
+ciMethod java/lang/Class getInterfaces0 ()[Ljava/lang/Class; 2057 1 257 0 -1
+ciMethod java/lang/Class reflectionData ()Ljava/lang/Class$ReflectionData; 2089 1 7503 0 1312
+ciMethod java/lang/Class newReflectionData (Ljava/lang/ref/SoftReference;I)Ljava/lang/Class$ReflectionData; 1873 1 1143 0 0
+ciMethod java/lang/ref/Reference get ()Ljava/lang/Object; 2049 1 256 0 -1
+ciMethod java/lang/ref/Reference <init> (Ljava/lang/Object;)V 2049 1 91150 0 0
+ciMethod java/lang/ref/Reference <init> (Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V 2049 1 79353 0 96
+ciMethod java/lang/ref/SoftReference <init> (Ljava/lang/Object;)V 1561 1 21092 0 0
+ciMethod java/lang/ref/SoftReference get ()Ljava/lang/Object; 3113 1 65390 0 96
+ciMethod sun/misc/Unsafe compareAndSwapObject (Ljava/lang/Object;JLjava/lang/Object;Ljava/lang/Object;)Z 3073 1 384 0 -1
+ciMethod java/util/Set add (Ljava/lang/Object;)Z 0 0 1 0 -1
+ciMethod java/util/HashMap hash (Ljava/lang/Object;)I 2049 1 477899 0 160
+ciMethod java/util/HashMap comparableClassFor (Ljava/lang/Object;)Ljava/lang/Class; 48649 1 6081 0 -1
+ciMethod java/util/HashMap compareComparables (Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/Object;)I 0 0 1 0 -1
+ciMethod java/util/HashMap put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; 969 1 42242 0 1248
+ciMethod java/util/HashMap putVal (ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; 993 9 28978 0 1184
+ciMethod java/util/HashMap resize ()[Ljava/util/HashMap$Node; 361 337 11052 0 -1
+ciMethod java/util/HashMap treeifyBin ([Ljava/util/HashMap$Node;I)V 521 1121 323 0 0
+ciMethod java/util/HashMap removeNode (ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/util/HashMap$Node; 1 1 5634 0 -1
+ciMethod java/util/HashMap newNode (ILjava/lang/Object;Ljava/lang/Object;Ljava/util/HashMap$Node;)Ljava/util/HashMap$Node; 2049 1 5391 0 224
+ciMethod java/util/HashMap newTreeNode (ILjava/lang/Object;Ljava/lang/Object;Ljava/util/HashMap$Node;)Ljava/util/HashMap$TreeNode; 2425 1 303 0 -1
+ciMethod java/util/HashMap replacementTreeNode (Ljava/util/HashMap$Node;Ljava/util/HashMap$Node;)Ljava/util/HashMap$TreeNode; 5697 1 712 0 -1
+ciMethod java/util/HashMap afterNodeAccess (Ljava/util/HashMap$Node;)V 2057 1 1281 0 0
+ciMethod java/util/HashMap afterNodeInsertion (Z)V 2049 1 1308 0 0
+ciMethod java/util/HashMap$Node <init> (ILjava/lang/Object;Ljava/lang/Object;Ljava/util/HashMap$Node;)V 2049 1 13591 0 0
+ciMethod java/lang/Class$ReflectionData <init> (I)V 2049 1 1143 0 0
+ciMethod java/lang/Class$Atomic casReflectionData (Ljava/lang/Class;Ljava/lang/ref/SoftReference;Ljava/lang/ref/SoftReference;)Z 2057 1 1143 0 0
+ciMethodData java/lang/Object <init> ()V 2 13012952 orig 264 56 173 81 93 0 0 0 0 128 4 23 22 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 193 110 52 6 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethod java/util/LinkedHashMap linkNodeLast (Ljava/util/LinkedHashMap$Entry;)V 2041 1 8151 0 0
+ciMethod java/util/LinkedHashMap newNode (ILjava/lang/Object;Ljava/lang/Object;Ljava/util/HashMap$Node;)Ljava/util/HashMap$Node; 2049 1 8148 0 288
+ciMethod java/util/LinkedHashMap a

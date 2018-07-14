@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.femelo.femelo_demo.MainActivity">
+
+    <item
+        android:id="@+id/toggle_grid"
+        android:icon="@drawable/ic_grid_view"
+        android:onClick="toggleGrid"
+        android:orderInCategory="100"
+        android:title="toggleGrid"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/shopping_cart_white"
+        android:onClick="goToCart"
+        android:orderInCategory="100"
+        android:title="cart"
+        android:visible="true"
+        app:showAsAction="always" />
+
+</menu>
