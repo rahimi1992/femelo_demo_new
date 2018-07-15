@@ -98,9 +98,14 @@ class FemeloRecyclerViewAdapter extends RecyclerView.Adapter<FemeloRecyclerViewA
         if (newProduct !=null && newProduct.size()!=0){
             mProducts.addAll(newProduct);
         }else {
-            loadingDone = true;
+            //loadingDone = true;
         }
 
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        mProducts.clear();
         notifyDataSetChanged();
     }
 

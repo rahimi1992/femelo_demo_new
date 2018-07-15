@@ -9,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DividerItemDecoration;
@@ -96,6 +97,8 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
     private FemeloRecyclerViewAdapter searchRecyclerViewAdapter;
     private GridLayoutManager mGridManager;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeContainer;
+    private boolean refreshing = false;
 //    private final String LOADED_DATA = "loaded_data";
 //    private List<Product> loadedData = null;
 
@@ -105,19 +108,21 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
         super.onCreate(savedInstanceState);
         pageN = 1;
         page = ALL_PRODUCT;
-
+        mContext = this;
 
 
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         setContentView(R.layout.activity_main);
         activateToolbar(false);
 
+
+
         mGridManager = new GridLayoutManager(MainActivity.this,1);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mContext = this;
         homeCL = (ConstraintLayout) View.inflate(mContext,R.layout.content_main, null);
         searchCL = (ConstraintLayout) View.inflate(mContext,R.layout.search_layout, null);
         CardView cardView = (CardView) View.inflate(mContext,R.layout.loading_grid, null);
+
         //mLinearLayout = cardView.findViewById(R.id.item_linear_layout);
 
         searchET = searchCL.findViewById(R.id.searchET);
@@ -159,6 +164,25 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        swipeContainer = homeCL.findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d(TAG, "onRefresh: starts");
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+
+                refreshing = true;
+                swipeContainer.setRefreshing(refreshing);
+                fetchTimelineAsync(0);
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         ///////////
         recyclerView = mConstraintLayout.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -173,12 +197,12 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
                 @Override
                 public void onBottomReached(int position, boolean loadingDone) {
                     Log.d(TAG, "onBottomReached: starts");
-                    if (!loadingDone) {
+                    //if (!loadingDone) {
                         lastData = ALL_PRODUCT;
                         onNeedNewData(ALL_PRODUCT);
-                    } else {
-                        isLoaded = true;
-                    }
+                    //} else {
+                    //    isLoaded = true;
+                    //}
                 }
             });
 
@@ -190,12 +214,12 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
                 @Override
                 public void onBottomReached(int position, boolean loadingDone) {
                     Log.d(TAG, "onBottomReached: starts");
-                    if (!loadingDone) {
+                    //if (!loadingDone) {
                         lastData = ALL_PRODUCT;
                         onNeedNewData(ALL_PRODUCT);
-                    } else {
-                        isLoaded = true;
-                    }
+                    //} else {
+                    //    isLoaded = true;
+                   // }
                 }
             });
 
@@ -207,6 +231,17 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
 //        getRawData.execute("curl https://femelo.com/wp-json/wc/v2/products/1697 -u ck_a69bd88d175c4c64e7d5062e3ce82951b83797a0:cs_b89c50f09b47688b1e9a46a4113b0bcf469fefd8");
 
         Log.d(TAG, "onCreate: ends");
+    }
+
+    public void fetchTimelineAsync(int page) {
+        // Send the network request to fetch the updated data
+        // `client` here is an instance of Android Async HTTP
+        // getHomeTimeline is an example endpoint.
+
+        lastData = ALL_PRODUCT;
+        pageN = 1;
+        onNeedNewData(ALL_PRODUCT);
+
     }
 
 
@@ -265,6 +300,13 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
         Log.d(TAG, "onDataAvailable: starts");
         if (status == DownloadStatus.OK){
             if (lastData.equals(ALL_PRODUCT)) {
+                if (refreshing){
+                    mFemeloRecyclerViewAdapter.clear();
+                    mGridRecyclerViewAdapter.clear();
+                    refreshing = false;
+                    swipeContainer.setRefreshing(refreshing);
+                    Log.d(TAG, "onDataAvailable: onRefresh: ends");
+                }
                 pageN++;
                 Log.d(TAG, "onDataAvailable: mProducts >> " + (mProducts==null));
                 Log.d(TAG, "onDataAvailable: data >> " + (data==null));
@@ -363,7 +405,7 @@ public class MainActivity extends BaseActivity implements GetFemeloJsonData.OnDa
                         lastData = SEARCH;
                         onNeedNewData(SEARCH);
                     } else {
-                        isLoaded = true;
+                    //    isLoaded = true;
                     }
                 }
             });
